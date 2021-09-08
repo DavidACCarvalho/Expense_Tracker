@@ -85,10 +85,13 @@ this.addEventListener('load', () => {
     }
 
     function deleteData(e) {
-        let index = e.target.dataset.index
+        if (!confirm('Remove transaction?')){
+            return
+        }
 
         // clean the list item
-        e.target.parentElement.remove()
+        let index = e.target.dataset.index
+        e.target.parentNode.remove()
 
         // clean the arrays when click on the delete button
         userBalance.historyList.description.splice(index, 1);
@@ -102,7 +105,6 @@ this.addEventListener('load', () => {
         userBalance.date.min.splice(index,1)
         userBalance.date.sec.splice(index,1)
 
-        
         makeAccounts();
         renderList();
         renderValues();
