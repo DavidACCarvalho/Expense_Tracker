@@ -30,8 +30,6 @@ this.addEventListener('load', () => {
 
         validateForm();
         cleanForm();
-
-        textInput.focus();
     }
 
     function renderValues () {
@@ -160,6 +158,7 @@ this.addEventListener('load', () => {
     function cleanForm() {
         textInput.value = null
         amountInput.value = null
+        textInput.focus();
     }
 
 
