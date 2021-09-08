@@ -52,23 +52,23 @@ function renderList() {
         
         const delBt = document.createElement('button');
         delBt.classList.add('bt-list');
-        delBt.textContent = 'X'
-        delBt.dataset.index = i
-        li.appendChild(delBt)
-        
+        delBt.textContent = 'X';
+        delBt.dataset.index = i;
+        li.appendChild(delBt);
+
         delBt.addEventListener('click', deleteData)
         
         const para = document.createElement('p');
         para.textContent = `${userBalance.historyList.description[i].toUpperCase()} : ${userBalance.historyList.amount[i]}€`;
-        para.classList.add(userBalance.historyList.amount[i] < 0 ? 'red-para' : 'green-para')
-        para.classList.add('para-list')
+        para.classList.add(userBalance.historyList.amount[i] < 0 ? 'red-para' : 'green-para');
+        para.classList.add('para-list');
         
         const sp = document.createElement('span');
-        sp.classList.add('span-list')
-        sp.innerHTML = setDate(i)
+        sp.classList.add('span-list');
+        sp.innerHTML = setDate(i);
         
-        para.appendChild(sp)
-        li.appendChild(para)
+        para.appendChild(sp);
+        li.appendChild(para);
     }
 }
 
@@ -93,7 +93,9 @@ function deleteData(e) {
 
     // clean the arrays when click on the delete button
     userBalance.historyList.description.splice(index, 1);
+    console.log(userBalance.historyList.description)
     userBalance.historyList.amount.splice(index, 1);
+    console.log(userBalance.historyList.amount)
     userBalance.date.day.splice(index,1)
     userBalance.date.month.splice(index,1)
     userBalance.date.year.splice(index,1)
@@ -101,7 +103,9 @@ function deleteData(e) {
     userBalance.date.min.splice(index,1)
     userBalance.date.sec.splice(index,1)
 
+    
     makeAccounts();
+    renderList();
     renderValues();
     
     return
