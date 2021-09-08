@@ -140,7 +140,7 @@ this.addEventListener('load', () => {
         // save actual date when add a new expense
         let d = new Date();
         userBalance.date.day.push(d.getDate())
-        userBalance.date.month.push(d.getMonth())
+        userBalance.date.month.push(d.getMonth() + 1)
         userBalance.date.year.push(d.getFullYear())
         userBalance.date.hour.push(d.getHours())
         userBalance.date.min.push(d.getMinutes())
