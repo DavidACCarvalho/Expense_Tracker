@@ -126,6 +126,7 @@ input {
     padding: 8px;
     color: #fff;
     font-weight: bolder;
+    cursor: pointer;
 }
 
 .para-list {
