@@ -101,10 +101,10 @@ this.addEventListener('load', () => {
     }
 
     function validateForm() {
-        let auxStrAmount = amountInput.value
+        let amount = amountInput.value
         let auxStrText = textInput.value
-        if (!auxStrAmount.match(/[a-zA-Z]/g) && auxStrAmount.length > 0 && auxStrText.length > 0){
-            saveData(auxStrAmount);
+        if ( amount != 0 && auxStrText.length > 0){
+            saveData(amount);
             renderValues();
             renderList();
         }else {
@@ -131,6 +131,7 @@ this.addEventListener('load', () => {
         userBalance.historyList.description.push(textInput.value)
         userBalance.historyList.amount.push(parseFloat(input))
         userBalance.historyList.date.push( new Date())
+        console.log(userBalance);
 
         makeAccounts()
 
