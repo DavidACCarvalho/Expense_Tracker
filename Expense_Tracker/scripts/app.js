@@ -13,16 +13,10 @@ this.addEventListener('load', () => {
     expense: 0,
     historyList: {
         description: [],
-        amount: []
+        amount: [],
+        date:[]
     },
-    date: {
-        day: [],
-        month: [],
-        year: [],
-        hour: [],
-        min: [],
-        sec: [],
-    } 
+    
     }
 
     function submitData(e) {
@@ -68,20 +62,21 @@ this.addEventListener('load', () => {
             
             para.appendChild(sp);
             li.appendChild(para);
+            console.log(userBalance);
         }
     }
 
     function setDate(index) {
-        let day = userBalance.date.day[index] < 10 ? '0' + userBalance.date.day[index] : userBalance.date.day[index];
-        let month = userBalance.date.month[index] < 10 ? '0' + userBalance.date.month[index] : userBalance.date.month[index];
-        let year = userBalance.date.year[index];
-        let hour = userBalance.date.hour[index] < 10 ? '0' + userBalance.date.hour[index] : userBalance.date.hour[index];
-        let min = userBalance.date.min[index] < 10 ? '0' + userBalance.date.min[index] : userBalance.date.min[index];
-        let sec = userBalance.date.sec[index] < 10 ? '0' + userBalance.date.sec[index] : userBalance.date.sec[index];
-
-        let strDate = `<i>${day}/${month}/${year} ${hour}:${min}:${sec}</i>`
-
-        return strDate
+        let date = new Date(userBalance.historyList.date[index])
+      
+        let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        let month = date.getMonth() < 10 ? '0' + date.getMonth(): date.getMonth();
+        let year = date.getFullYear();
+        let hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+        let min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        let sec = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+        
+        return `<i>${day}/${month}/${year} ${hour}:${min}:${sec}</i>`
     }
 
     function deleteData(e) {
@@ -93,17 +88,10 @@ this.addEventListener('load', () => {
         let index = e.target.dataset.index
         e.target.parentNode.remove()
 
-        // clean the arrays when click on the delete button
+        // clean the arrays of object when click on the delete button
         userBalance.historyList.description.splice(index, 1);
-        console.log(userBalance.historyList.description)
         userBalance.historyList.amount.splice(index, 1);
-        console.log(userBalance.historyList.amount)
-        userBalance.date.day.splice(index,1)
-        userBalance.date.month.splice(index,1)
-        userBalance.date.year.splice(index,1)
-        userBalance.date.hour.splice(index,1)
-        userBalance.date.min.splice(index,1)
-        userBalance.date.sec.splice(index,1)
+        userBalance.historyList.date.splice(index, 1);
 
         makeAccounts();
         renderList();
@@ -139,18 +127,10 @@ this.addEventListener('load', () => {
     }
 
     function saveData(input) {
-        // save actual date when add a new expense
-        let d = new Date();
-        userBalance.date.day.push(d.getDate())
-        userBalance.date.month.push(d.getMonth() + 1)
-        userBalance.date.year.push(d.getFullYear())
-        userBalance.date.hour.push(d.getHours())
-        userBalance.date.min.push(d.getMinutes())
-        userBalance.date.sec.push(d.getSeconds())
-
-        // save the value and the description of list item
+        // save the value, description and date when occurs the transaction
         userBalance.historyList.description.push(textInput.value)
         userBalance.historyList.amount.push(parseFloat(input))
+        userBalance.historyList.date.push( new Date())
 
         makeAccounts()
 
