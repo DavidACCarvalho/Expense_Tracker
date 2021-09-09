@@ -62,7 +62,7 @@ this.addEventListener('load', () => {
             
             para.appendChild(sp);
             li.appendChild(para);
-            console.log(userBalance);
+            
         }
     }
 
